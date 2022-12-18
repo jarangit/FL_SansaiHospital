@@ -8,6 +8,7 @@ module.exports = {
     extend: {},
     colors: {
       "purple": {
+        supperLight: "#F6E3FF",
         light: "#D2ADE4",
         DEFAULT: "#7E51B9",
       },
