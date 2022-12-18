@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BiUserPlus } from 'react-icons/bi'
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { AiFillPrinter } from 'react-icons/ai'
 import { GiHealthNormal } from 'react-icons/gi'
 import { mockDataInternalUserList } from '../../../contrasts/internalUserList'
 import Image from 'next/image'
+import ModalPatientDetail from '../../../components/modal/modalPatientDetail'
 type Props = {}
 
 const Table = (props: Props) => {
-
+  const [showModal, setShowModal] = useState(false)
   const styled = {
     button: `
       bg-purple    
@@ -108,7 +109,7 @@ const Table = (props: Props) => {
                 <td className={`${styled.td}`}>{item.date}</td>
                 <td className={`${styled.td}`}>{item.hn}</td>
                 <td className={`${styled.td} `}>
-                  <div className={`flex items-center justify-center cursor-pointer`}>
+                  <div className={`flex items-center justify-center cursor-pointer`} onClick={() => setShowModal(true)}>
                     <Image src={"/img/icons/doc.svg"} alt="" width={20} height={20} />
                   </div>
                 </td>
@@ -117,6 +118,9 @@ const Table = (props: Props) => {
           ))}
         </tbody>
       </table>
+
+      {/* modal zone */}
+      <ModalPatientDetail handleClose={() => setShowModal(false)} open={showModal} />
     </div>
   )
 }
