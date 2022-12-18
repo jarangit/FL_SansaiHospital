@@ -23,6 +23,7 @@ const Table = (props: Props) => {
       h-24
       bg-purple-supperLight
       text-purple
+      p-2
     ` ,
     td: `
       border border-purple
