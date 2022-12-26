@@ -6,6 +6,14 @@ type Props = {
 }
 
 const Layout = ({ children }: Props) => {
+  const Layout = children.type.layout;
+  if (Layout) {
+    return (
+      <div>
+        {children}
+      </div>
+    )
+  }
   return (
     <div>
       <div className={`fixed w-24 h-full bg-purple-light min-h-screen z-50`} />

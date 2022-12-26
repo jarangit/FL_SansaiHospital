@@ -14,3 +14,8 @@ body {
 input, textarea{
   outline: none;
 }
+.bg_loginPage {
+  background-image: url('/img/bg_login.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
