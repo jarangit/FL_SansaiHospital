@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PatientHistoryTable from './components/patientHistoryTable'
+import ModalAddDrug from '../../components/modal/modalAddDrug'
 
 type Props = {}
 
@@ -15,8 +16,9 @@ const dataUser = {
   diagnosis: "Appendicitis",
 }
 const PatientHistoryPage = (props: Props) => {
+  const [showModalAddDrug, setShowModalAddDrug] = useState(false)
   return (
-    <div>
+    <div className='animate-fade-in-down'>
       <div className='text-3xl font-bold mb-10'>
         <div className='text-purple'>ประวัติผู้ป่วย</div>
       </div>
@@ -67,8 +69,11 @@ const PatientHistoryPage = (props: Props) => {
 
       {/* table */}
       <div className='mt-10'>
-        <PatientHistoryTable />
+        <PatientHistoryTable setShowModalAddDrug ={setShowModalAddDrug}/>
       </div>
+
+      {/* modal zone */}
+      <ModalAddDrug handleClose={() => setShowModalAddDrug(false)} open={showModalAddDrug} />
     </div>
   )
 }

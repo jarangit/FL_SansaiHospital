@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { AiFillPrinter } from 'react-icons/ai'
 import { GiHealthNormal } from 'react-icons/gi'
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { FaPenAlt } from 'react-icons/fa'
 import { mockDataPatientList } from '../../../contrasts/patientHistoryList'
 import Image from 'next/image'
-type Props = {}
+import Datepicker from '../../../components/input/datePicker'
+import TimePicker from '../../../components/input/timePicker'
 
-const PatientHistoryTable = (props: Props) => {
+type Props = {
+  setShowModalAddDrug:any
+}
+
+const PatientHistoryTable = ({setShowModalAddDrug}: Props) => {
+  const [showModal, setShowModal] = useState(false)
+  const [onShowDatePicker, setOnShowDatePicker] = useState(false)
+  const [onShowTimePicker, setOnShowTimePicker] = useState(false)
   const styled = {
     button: `
       bg-purple    
@@ -16,6 +24,7 @@ const PatientHistoryTable = (props: Props) => {
       py-1
       text-white
       flex gap-2 items-center justify-between
+      h-8
     `,
     th: `
       border border-purple
@@ -35,22 +44,48 @@ const PatientHistoryTable = (props: Props) => {
       text-xs
     `
   }
+
+  const toggleShowPicker = (type: string) => {
+    switch (type) {
+      case "OPEN_TIME":
+        setOnShowTimePicker(!onShowTimePicker)
+        setOnShowDatePicker(false)
+        break;
+      case "OPEN_DATE":
+        setOnShowTimePicker(false)
+        setOnShowDatePicker(!onShowDatePicker)
+        break;
+
+      default:
+        break;
+    }
+  }
   return (
     <div>
       <div className='flex gap-3 items-center w-full justify-end'>
-        <button className={`${styled.button} min-w-[120px]`}>
-          <div>วันที่</div>
-          <div>
-            <MdOutlineKeyboardArrowDown size={30} />
+        <div className='relative'>
+          <button className={`${styled.button} min-w-[120px]`} onClick={() => toggleShowPicker("OPEN_DATE")}>
+            <div>วันที่</div>
+            <div className={`${onShowDatePicker ? "rotate-180 transition-all" : ""}`}>
+              <MdOutlineKeyboardArrowDown size={30} />
+            </div>
+          </button>
+          <div className={`absolute right-0 max-h-0 overflow-hidden transition-all p-6 w-[350px] ${onShowDatePicker ? "max-h-[500px]" : "p-0"}`}>
+            <Datepicker />
           </div>
-        </button>
-        <button className={`${styled.button} min-w-[120px]`}>
-          <div>เลือกเวลา</div>
-          <div>
-            <MdOutlineKeyboardArrowDown size={30} />
+        </div>
+        <div className='relative '>
+          <button className={`${styled.button} min-w-[120px]`} onClick={() => toggleShowPicker("OPEN_TIME")}>
+            <div>เลือกเวลา</div>
+            <div className={`${onShowTimePicker ? "rotate-180 transition-all" : ""}`}>
+              <MdOutlineKeyboardArrowDown size={30} />
+            </div>
+          </button>
+          <div className={`absolute -right-16 max-h-0 overflow-hidden transition-all p-6 w-[350px] ${onShowTimePicker ? "max-h-[500px]" : "p-0"}`}>
+            <TimePicker onSave={() => toggleShowPicker("OPEN_TIME")} />
           </div>
-        </button>
-        <button className={`${styled.button} min-w-[120px]`}>
+        </div>
+        <button className={`${styled.button} min-w-[120px]`} onClick = {() => setShowModalAddDrug(true)}>
           <div>เพิ่มรายการ</div>
         </button>
         <div>
