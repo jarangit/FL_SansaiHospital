@@ -7,13 +7,14 @@ import { mockDataPatientList } from '../../../contrasts/patientHistoryList'
 import Image from 'next/image'
 import Datepicker from '../../../components/input/datePicker'
 import TimePicker from '../../../components/input/timePicker'
+import { GrDocumentUpdate } from 'react-icons/gr'
 
 type Props = {
   setShowModalAddDrug: any;
   setOnPint: any;
 }
 
-const PatientHistoryTable = ({ setShowModalAddDrug, setOnPint }: Props) => {
+const PintTable = ({ setShowModalAddDrug, setOnPint }: Props) => {
   const [showModal, setShowModal] = useState(false)
   const [onShowDatePicker, setOnShowDatePicker] = useState(false)
   const [onShowTimePicker, setOnShowTimePicker] = useState(false)
@@ -64,7 +65,7 @@ const PatientHistoryTable = ({ setShowModalAddDrug, setOnPint }: Props) => {
   return (
     <div className='animate-fade-in-down'>
       <div className='flex gap-3 items-center w-full justify-end '>
-        <div className='relative'>
+        {/* <div className='relative'>
           <button className={`${styled.button} min-w-[120px]`} onClick={() => toggleShowPicker("OPEN_DATE")}>
             <div>วันที่</div>
             <div className={`${onShowDatePicker ? "rotate-180 transition-all" : ""}`}>
@@ -85,13 +86,16 @@ const PatientHistoryTable = ({ setShowModalAddDrug, setOnPint }: Props) => {
           <div className={`absolute -right-16 max-h-0 overflow-hidden transition-all p-6 w-[350px] ${onShowTimePicker ? "max-h-[500px]" : "p-0"}`}>
             <TimePicker onSave={() => toggleShowPicker("OPEN_TIME")} />
           </div>
-        </div>
-        <button className={`${styled.button} min-w-[120px]`} onClick={() => setShowModalAddDrug(true)}>
-          <div>เพิ่มรายการ</div>
+        </div> */}
+        <button className={`${styled.button}`} onClick={() => console.log("pint")}>
+          <div>พิมพ์</div>
+          <div className=''>
+            <img src={'/img/pintDoc.png'} alt="" width={20} />
+          </div>
         </button>
-        <div className='cursor-pointer' onClick={() => setOnPint(true)}>
+        {/* <div className='cursor-pointer' onClick={() => setOnPint(true)}>
           <AiFillPrinter size={40} />
-        </div>
+        </div> */}
       </div>
 
 
@@ -259,4 +263,4 @@ const PatientHistoryTable = ({ setShowModalAddDrug, setOnPint }: Props) => {
   )
 }
 
-export default PatientHistoryTable
+export default PintTable

@@ -62,7 +62,7 @@ const Table = ({ setShowFormPatient }: Props) => {
     }
   }
   return (
-    <div className='animate-fade-in-down'>
+    <div className=''>
       <div className='flex w-full justify-between items-center '>
         <div>
           <button className={`${styled.button}`} onClick={() => setShowFormPatient(true)}>
