@@ -5,7 +5,7 @@ export const mockDataInternalUserList = [
     date: `12/12/2565`,
     hn: "0001",
     detail: {
-      nameTH: "นางสาว สุชัญญา นิยมไทย",
+      nameTH: "นางสาว สุชัญญา นิยมไทย 0001",
       nameEN: "Suchanya Niyomthai    ",
       age: "22",
       weight: "50",
@@ -22,7 +22,7 @@ export const mockDataInternalUserList = [
     date: `12/12/2565`,
     hn: "0002",
     detail: {
-      nameTH: "นางสาว สุชัญญา นิยมไทย",
+      nameTH: "นางสาว สุชัญญา นิยมไทย 0002",
       nameEN: "Suchanya Niyomthai    ",
       age: "22",
       weight: "50",

@@ -46,8 +46,8 @@ const PatientHistoryDetailPage = (props: Props) => {
   }
 
   const onBack = () => {
-    if (showModalAddDrug) {
-      setShowModalAddDrug(false)
+    if (onPint) {
+      setOnPint(false)
     } else {
       push("/internal-patient-list")
     }

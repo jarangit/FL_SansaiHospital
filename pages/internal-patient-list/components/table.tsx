@@ -5,16 +5,18 @@ import { AiFillPrinter } from 'react-icons/ai'
 import { GiHealthNormal } from 'react-icons/gi'
 import { mockDataInternalUserList } from '../../../contrasts/internalUserList'
 import Image from 'next/image'
-import ModalPatientDetail from '../../../components/modal/modalPatientDetail'
+import ModalPatientCreate from './modalPatientCreate'
 import Datepicker from '../../../components/input/datePicker'
 import TimePicker from '../../../components/input/timePicker'
+import ModalPatientDetail from './modalPatientDetail'
 
 type Props = {
   setShowFormPatient: any
 }
 
 const Table = ({ setShowFormPatient }: Props) => {
-  const [showModal, setShowModal] = useState(false)
+  const [showModalDetail, setShowModalDetail] = useState(false)
+  const [showModalCreate, setShowModalCreate] = useState(false)
   const [onShowDatePicker, setOnShowDatePicker] = useState(false)
   const [onShowTimePicker, setOnShowTimePicker] = useState(false)
 
@@ -46,7 +48,7 @@ const Table = ({ setShowFormPatient }: Props) => {
     `
   }
 
-  const toggleShowPicker = (type:string) =>{
+  const toggleShowPicker = (type: string) => {
     switch (type) {
       case "OPEN_TIME":
         setOnShowTimePicker(!onShowTimePicker)
@@ -56,9 +58,16 @@ const Table = ({ setShowFormPatient }: Props) => {
         setOnShowTimePicker(false)
         setOnShowDatePicker(!onShowDatePicker)
         break;
-    
+
       default:
         break;
+    }
+  }
+  const onSwitchModal = (value: string) => {
+    console.log('%cMyProject%cline:66%cvalue', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(20, 68, 106);padding:3px;border-radius:2px', value)
+    if (value == "CREATE") {
+      setShowModalDetail(false)
+      setShowModalCreate(true)
     }
   }
   return (
@@ -143,7 +152,7 @@ const Table = ({ setShowFormPatient }: Props) => {
                 <td className={`${styled.td}`}>{item.date}</td>
                 <td className={`${styled.td}`}>{item.hn}</td>
                 <td className={`${styled.td} `}>
-                  <div className={`flex items-center justify-center cursor-pointer`} onClick={() => setShowModal(true)}>
+                  <div className={`flex items-center justify-center cursor-pointer`} onClick={() => setShowModalDetail(true)}>
                     <Image src={"/img/icons/doc.svg"} alt="" width={20} height={20} />
                   </div>
                 </td>
@@ -154,7 +163,8 @@ const Table = ({ setShowFormPatient }: Props) => {
       </table>
 
       {/* modal zone */}
-      <ModalPatientDetail handleClose={() => setShowModal(false)} open={showModal} />
+      <ModalPatientDetail handleClose={() => setShowModalDetail(false)} open={showModalDetail} switchModal={onSwitchModal} />
+      <ModalPatientCreate handleClose={() => setShowModalCreate(false)} open={showModalCreate} />
     </div>
   )
 }
