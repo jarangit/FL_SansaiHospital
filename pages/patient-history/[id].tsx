@@ -22,7 +22,7 @@ type Props = {}
 // }
 const PatientHistoryDetailPage = (props: Props) => {
   const [showModalAddDrug, setShowModalAddDrug] = useState(false)
-  const [onPint, setOnPint] = useState(false)
+  const [onPrint, setOnPrint] = useState(false)
   const [dataUser, setDataUser] = useState({
     nameTH: "",
     nameEN: "",
@@ -46,15 +46,15 @@ const PatientHistoryDetailPage = (props: Props) => {
   }
 
   const onBack = () => {
-    if (onPint) {
-      setOnPint(false)
+    if (onPrint) {
+      setOnPrint(false)
     } else {
       push("/internal-patient-list")
     }
   }
   useEffect(() => {
     getData(query.id)
-  }, [onPint, query])
+  }, [onPrint, query])
 
 
 
@@ -68,7 +68,7 @@ const PatientHistoryDetailPage = (props: Props) => {
       {dataUser && (
         <div className='py-10 border-y-2 border-gray relative'>
           <div className='px-3  absolute -top-4 right-0 bg-white'>
-            <button className={`bg-purple text-white px-3 py-1 rounded-md ${onPint ? "hidden" : "block"}`}>แก้ไขประวัติผู้ป่วย</button>
+            <button className={`bg-purple text-white px-3 py-1 rounded-md ${onPrint ? "hidden" : "block"}`}>แก้ไขประวัติผู้ป่วย</button>
           </div>
           <div className='grid grid-cols-2 lg:grid-cols-3 gap-6 font-bold'>
             <div className='flex gap-3 col-span-3'>
@@ -113,10 +113,10 @@ const PatientHistoryDetailPage = (props: Props) => {
 
       {/* table */}
       <div className='mt-10'>
-        {!onPint ? (
-          <PatientHistoryTable setShowModalAddDrug={setShowModalAddDrug} setOnPint={setOnPint} />
+        {!onPrint ? (
+          <PatientHistoryTable setShowModalAddDrug={setShowModalAddDrug} setOnPint={setOnPrint} />
         ) : (
-          <PintTable setShowModalAddDrug={setShowModalAddDrug} setOnPint={setOnPint} />
+          <PintTable setShowModalAddDrug={setShowModalAddDrug} setOnPint={setOnPrint} />
         )}
       </div>
 

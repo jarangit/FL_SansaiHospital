@@ -105,9 +105,10 @@ const Table = ({ setShowFormPatient }: Props) => {
               <TimePicker onSave={() => toggleShowPicker("OPEN_TIME")} />
             </div>
           </div>
-          <div>
+          {/* icon print */}
+          {/* <div>
             <AiFillPrinter size={40} />
-          </div>
+          </div> */}
         </div>
       </div>
 
