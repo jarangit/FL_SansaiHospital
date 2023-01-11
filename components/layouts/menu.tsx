@@ -37,7 +37,7 @@ const Menu = (props: Props) => {
           <div>
             <InputSearch onChange={onSearch} onSubmit={onSubmitSearch} />
           </div>
-          <div className='text-purple-light'><HiBell size={30} /></div>
+          {/* <div className='text-purple-light'><HiBell size={30} /></div> */}
           <div>
             <FiMenu size={35} />
           </div>
