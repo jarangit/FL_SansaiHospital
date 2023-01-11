@@ -9,6 +9,7 @@ import ModalPatientCreate from '../../pages/internal-patient-list/components/mod
 import ModalPatientDetail from '../../pages/internal-patient-list/components/modalPatientDetail'
 import Datepicker from '../input/datePicker'
 import TimePicker from '../input/timePicker'
+import ModalSignature from '../modal/modalSignatrue'
 
 
 type Props = {
@@ -18,6 +19,7 @@ type Props = {
 const InternalTable = ({ setShowFormPatient }: Props) => {
   const [showModalDetail, setShowModalDetail] = useState(false)
   const [showModalCreate, setShowModalCreate] = useState(false)
+  const [showModalSigner, setShowModalSigner] = useState(false)
   const [onShowDatePicker, setOnShowDatePicker] = useState(false)
   const [onShowTimePicker, setOnShowTimePicker] = useState(false)
 
@@ -167,10 +169,12 @@ const InternalTable = ({ setShowFormPatient }: Props) => {
                 <td className={`${styled.td}`}>{item.hn}</td>
                 <td className={`${styled.td} `}>
                   {item.userSignature ? (
-                    <div className={`flex items-center justify-center cursor-pointer`} onClick={() => setShowModalDetail(true)}>
+                    <div className={`flex items-center justify-center cursor-pointer`}>
                       <Image src={"/img/signer.png"} alt="" width={50} height={50} />
                     </div>
-                  ) : ""}
+                  ) : <div className={`flex items-center justify-center cursor-pointer`} onClick={() => setShowModalSigner(true)}>
+                    <Image src={"/img/icons/userIcon.svg"} alt="" width={20} height={20} />
+                  </div>}
                 </td>
               </tr>
             </React.Fragment>
@@ -181,6 +185,7 @@ const InternalTable = ({ setShowFormPatient }: Props) => {
       {/* modal zone */}
       <ModalPatientDetail handleClose={() => setShowModalDetail(false)} open={showModalDetail} switchModal={onSwitchModal} />
       <ModalPatientCreate handleClose={() => setShowModalCreate(false)} open={showModalCreate} />
+      <ModalSignature handleClose={() => setShowModalSigner(false)} open={showModalSigner} />
     </div>
   )
 }
