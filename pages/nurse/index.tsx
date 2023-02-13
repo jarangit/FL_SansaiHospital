@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import PatientHistoryTable from './components/patientHistoryTable'
+
 import ModalAddDrug from '../../components/modal/modalAddDrug'
 import GoBackButton from '../../components/buttons/goBackButton'
-import PintTable from './components/pintTable'
 import { useRouter } from 'next/router'
 import { mockDataPatientList } from '../../contrasts/patientHistoryList'
 import { mockDataInternalUserList } from '../../contrasts/internalUserList'
+import PatientHistoryTable from '../patient-history/components/patientHistoryTable'
+import PintTable from '../patient-history/components/pintTable'
 
 type Props = {}
 
@@ -20,7 +21,7 @@ type Props = {}
 //   history: "",
 //   diagnosis: "Appendicitis",
 // }
-const PatientHistoryDetailPage = (props: Props) => {
+const NursePage = (props: Props) => {
   const [showModalAddDrug, setShowModalAddDrug] = useState(false)
   const [onPrint, setOnPrint] = useState(false)
   const [dataUser, setDataUser] = useState({
@@ -53,7 +54,11 @@ const PatientHistoryDetailPage = (props: Props) => {
     }
   }
   useEffect(() => {
-    getData(query.id)
+    if(query.id){
+      getData(query.id)
+    }else{
+      getData("007")
+    }
   }, [onPrint, query])
 
 
@@ -67,9 +72,9 @@ const PatientHistoryDetailPage = (props: Props) => {
 
       {dataUser && (
         <div className='py-10 border-y-2 border-gray relative'>
-          <div className='px-3  absolute -top-4 right-0 bg-white'>
+          {/* <div className='px-3  absolute -top-4 right-0 bg-white'>
             <button className={`bg-purple text-white px-3 py-1 rounded-md ${onPrint ? "hidden" : "block"}`}>แก้ไขประวัติผู้ป่วย</button>
-          </div>
+          </div> */}
           <div className='grid grid-cols-2 lg:grid-cols-3 gap-6 font-bold'>
             <div className='flex gap-3 col-span-3'>
               <div className='min-w-[30px]'>ชื่อ</div>
@@ -114,7 +119,7 @@ const PatientHistoryDetailPage = (props: Props) => {
       {/* table */}
       <div className='mt-10'>
         {!onPrint ? (
-          <PatientHistoryTable setShowModalAddDrug={setShowModalAddDrug} setOnPint={setOnPrint} mode = {"ADMIN"} />
+          <PatientHistoryTable setShowModalAddDrug={setShowModalAddDrug} setOnPint={setOnPrint} />
         ) : (
           <PintTable setShowModalAddDrug={setShowModalAddDrug} setOnPint={setOnPrint} />
         )}
@@ -126,4 +131,4 @@ const PatientHistoryDetailPage = (props: Props) => {
   )
 }
 
-export default PatientHistoryDetailPage
+export default NursePage

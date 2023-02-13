@@ -9,7 +9,6 @@ export default function Home() {
   return (
     <>
       <div className='text-3xl font-bold mb-10 animate-fade-in-down'>
-        <GoBackButton onBack={() => router.push('/internal-patient-list')} onShow={true} />
         <div className='text-purple'>รายชื่อผู้ป่วยใน</div>
         <div>แผนกศัลยกรรมหญิง</div>
       </div>

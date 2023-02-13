@@ -11,9 +11,10 @@ import TimePicker from '../../../components/input/timePicker'
 type Props = {
   setShowModalAddDrug: any;
   setOnPint: any;
+  mode ?:string;
 }
 
-const PatientHistoryTable = ({ setShowModalAddDrug, setOnPint }: Props) => {
+const PatientHistoryTable = ({ setShowModalAddDrug, setOnPint, mode }: Props) => {
   const [showModal, setShowModal] = useState(false)
   const [onShowDatePicker, setOnShowDatePicker] = useState(false)
   const [onShowTimePicker, setOnShowTimePicker] = useState(false)
@@ -158,17 +159,19 @@ const PatientHistoryTable = ({ setShowModalAddDrug, setOnPint }: Props) => {
                       <div className='w-[200px] text-left'>
                         {item.name}
                       </div>
-                      <div className='text-right w-full flex justify-end'>
-                        <div className={`${styled.card}`}>
-                          <div>
-                            {/* <Image src={"/img/icons/bed.svg"} alt="" width={20} height={20} /> */}
-                            <FaPenAlt size={15} />
-                          </div>
-                          <div>
-                            Edit
-                          </div>
-                        </div>
-                      </div>
+                     {mode == "ADMIN" && (
+                       <div className='text-right w-full flex justify-end'>
+                       <div className={`${styled.card}`}>
+                         <div>
+                           {/* <Image src={"/img/icons/bed.svg"} alt="" width={20} height={20} /> */}
+                           <FaPenAlt size={15} />
+                         </div>
+                         <div>
+                           Edit
+                         </div>
+                       </div>
+                     </div>
+                     )}
                     </div>
                   </td>
                   <td className={`${styled.td}`}>{item.route}</td>

@@ -79,7 +79,7 @@ const PatientHistoryPage = (props: Props) => {
       {/* table */}
       <div className='mt-10'>
         {!onPint ? (
-          <PatientHistoryTable setShowModalAddDrug={setShowModalAddDrug} setOnPint={setOnPint} />
+          <PatientHistoryTable setShowModalAddDrug={setShowModalAddDrug} setOnPint={setOnPint} mode = {"ADMIN"} />
         ) : (
           <PintTable setShowModalAddDrug={setShowModalAddDrug} setOnPint={setOnPint} />
         )}
